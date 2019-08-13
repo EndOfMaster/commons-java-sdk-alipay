@@ -20,7 +20,7 @@ public class AlipayClientTest {
 
     @Test
     public void chargeTest() {
-        AlipayDirectChargeRequest request = new AlipayDirectChargeRequest("alipay.trade.page.pay", RandomStringUtils.randomAlphanumeric(32),
+        AlipayDirectChargeRequest request = new AlipayDirectChargeRequest(RandomStringUtils.randomAlphanumeric(32),
                 "测试商品", "1.00", "", "");
         AlipayDirectChargeResponse response = alipayClient.execute(request);
         System.err.println(response.buildCredentials());
@@ -28,7 +28,7 @@ public class AlipayClientTest {
 
     @Test
     public void questTest() {
-        AlipayDirectChargeQueryRequest request = new AlipayDirectChargeQueryRequest("alipay.trade.query", "", "", "aasdasdadadadasdas");
+        AlipayDirectChargeQueryRequest request = new AlipayDirectChargeQueryRequest("", "", "aasdasdadadadasdas");
         AlipayDirectChargeQueryResponse response = alipayClient.execute(request);
         System.err.println(response.getParams().tradeNo);
     }

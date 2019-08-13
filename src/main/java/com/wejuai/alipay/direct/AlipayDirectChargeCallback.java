@@ -19,7 +19,7 @@ public class AlipayDirectChargeCallback extends AlipayCallback {
         super(request);
     }
 
-    public void validate(String outTradeNo, int amount) {
+    public void validate(String outTradeNo, long amount) {
         validateTradeStatus();
         validateOutTradeNo(outTradeNo);
         validateTotalFee(amount);
@@ -28,6 +28,10 @@ public class AlipayDirectChargeCallback extends AlipayCallback {
     @Override
     public Map<String, String> buildResultParams() {
         return Collections.singletonMap("trade_no", findParam(params, "trade_no"));
+    }
+
+    public String getTradeNo() {
+        return buildResultParams().get("trade_no");
     }
 
     @Override
@@ -48,7 +52,7 @@ public class AlipayDirectChargeCallback extends AlipayCallback {
         validateParam(param, outTradeNo, actual);
     }
 
-    private void validateTotalFee(int amount) {
+    private void validateTotalFee(long amount) {
         String param = "total_fee";
         String expected = amount / 100.0 + "";
         String actual = findParam(params, param);

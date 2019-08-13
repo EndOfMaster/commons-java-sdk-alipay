@@ -1,6 +1,7 @@
 package com.wejuai.alipay.direct;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.wejuai.alipay.AlipayRequest;
 
 import java.util.HashMap;
@@ -15,11 +16,18 @@ public class AlipayDirectChargeRequest extends AlipayRequest<AlipayDirectChargeR
     private final String subject;
     private final String totalAmount;
 
-    public AlipayDirectChargeRequest(String method, String outTradeNo, String subject, String totalAmount, String returnUrl, String notifyUrl) {
-        super(method, returnUrl, notifyUrl);
+    public AlipayDirectChargeRequest(String outTradeNo, String subject, String totalAmount, String returnUrl, String notifyUrl) {
+        super(returnUrl, notifyUrl);
         this.outTradeNo = outTradeNo;
         this.subject = subject;
         this.totalAmount = totalAmount;
+    }
+
+    @Override
+    public Map<String, String> buildRequestParams() throws JsonProcessingException {
+        Map<String, String> params = super.buildRequestParams();
+        params.put("method", "alipay.trade.page.pay");
+        return params;
     }
 
     @Override

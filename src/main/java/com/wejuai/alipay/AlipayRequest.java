@@ -17,12 +17,10 @@ import static com.wejuai.alipay.Constants.VERSION;
  */
 public abstract class AlipayRequest<T extends AlipayResponse> {
 
-    private final String method;
     private final String returnUrl;
     private final String notifyUrl;
 
-    protected AlipayRequest(String method, String returnUrl, String notifyUrl) {
-        this.method = method;
+    protected AlipayRequest(String returnUrl, String notifyUrl) {
         this.returnUrl = returnUrl;
         this.notifyUrl = notifyUrl;
     }
@@ -31,7 +29,6 @@ public abstract class AlipayRequest<T extends AlipayResponse> {
 
     public Map<String, String> buildRequestParams() throws JsonProcessingException {
         Map<String, String> params = new HashMap<>();
-        params.put("method", method);
         params.put("charset", CHARSET);
         params.put("sign_type", SIGN_TYPE);
         params.put("timestamp", TIMESTAMP_DATE_FORMAT.format(new Date()));

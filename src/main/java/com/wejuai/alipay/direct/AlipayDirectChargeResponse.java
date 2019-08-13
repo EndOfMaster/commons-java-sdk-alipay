@@ -1,6 +1,7 @@
 package com.wejuai.alipay.direct;
 
 import com.wejuai.alipay.AlipayResponse;
+import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.Collections;
 import java.util.Map;
@@ -20,4 +21,8 @@ public class AlipayDirectChargeResponse extends AlipayResponse {
         return Collections.singletonMap("html", html);
     }
 
+    @Override
+    public Params getParams() {
+        throw new NotImplementedException("不必实现");
+    }
 }

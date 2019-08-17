@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Map;
 
 import static com.endofmaster.commons.util.validate.ParamUtils.findParam;
-import static com.wejuai.alipay.Constants.MAPI_PUBLIC_KEY;
+import static com.wejuai.alipay.Constants.OPENAPI_PUBLIC_KEY;
 import static com.wejuai.alipay.ValidationUtils.validateParam;
 
 /**
@@ -36,7 +36,7 @@ public class AlipayDirectChargeCallback extends AlipayCallback {
 
     @Override
     protected String getPublicKey() {
-        return MAPI_PUBLIC_KEY;
+        return OPENAPI_PUBLIC_KEY;
     }
 
     private void validateTradeStatus() {
@@ -53,10 +53,10 @@ public class AlipayDirectChargeCallback extends AlipayCallback {
     }
 
     private void validateTotalFee(long amount) {
-        String param = "total_fee";
-        String expected = amount / 100.0 + "";
+        String param = "total_amount";
+        double expected = amount / 100.0;
         String actual = findParam(params, param);
-        validateParam(param, expected, actual);
+        validateParam(param, expected, Double.valueOf(actual));
     }
 
 }

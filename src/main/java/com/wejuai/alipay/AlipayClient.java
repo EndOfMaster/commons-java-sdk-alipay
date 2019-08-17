@@ -55,7 +55,7 @@ public class AlipayClient {
             HttpPost httpPost = new HttpPost(url);
             HttpResponse response = httpClient.execute(httpPost);
             String result = StreamUtils.copyToString(response.getEntity().getContent(), CHARSET_OBJ);
-            logger.info("返回结果：" + result);
+            logger.debug("返回结果：" + result);
             return OBJECT_MAPPER.readValue(result, request.getResponseClass());
         } catch (IOException | SignatureException e) {
             throw new AlipayException(e);

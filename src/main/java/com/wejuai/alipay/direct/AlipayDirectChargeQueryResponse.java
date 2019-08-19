@@ -23,6 +23,10 @@ public class AlipayDirectChargeQueryResponse extends AlipayResponse<AlipayDirect
         this.params = params;
     }
 
+    public String getTradeNo() {
+        return params.tradeNo;
+    }
+
     /** 是否完成 */
     public boolean getChargeStatus() {
         if (!isSuccessful())

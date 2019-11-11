@@ -7,6 +7,8 @@ import com.endofmaster.commons.util.sign.RsaSignUtils;
 import com.wejuai.alipay.direct.AlipayDirectChargeRequest;
 import com.wejuai.alipay.direct.AlipayDirectChargeResponse;
 import com.wejuai.alipay.direct.CredentialsUtils;
+import com.wejuai.alipay.wap.AlipayWapChargeRequest;
+import com.wejuai.alipay.wap.AlipayWapChargeResponse;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
@@ -51,6 +53,9 @@ public class AlipayClient {
             String url = CredentialsUtils.buildUrl(OPENAPI_GATEWAY_URL, params, CHARSET);
             if (request instanceof AlipayDirectChargeRequest) {
                 return (T) new AlipayDirectChargeResponse(url);
+            }
+            if (request instanceof AlipayWapChargeRequest) {
+                return (T) new AlipayWapChargeResponse(url);
             }
             HttpPost httpPost = new HttpPost(url);
             HttpResponse response = httpClient.execute(httpPost);

@@ -1,4 +1,4 @@
-package com.wejuai.alipay.direct;
+package com.wejuai.alipay.query;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wejuai.alipay.AlipayException;
@@ -8,7 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * @author ZM.Wang
  */
-public class AlipayDirectChargeQueryResponse extends AlipayResponse<AlipayDirectChargeQueryResponse.Params> {
+public class AlipayChargeQueryResponse extends AlipayResponse<AlipayChargeQueryResponse.Params> {
 
 
     @JsonProperty("alipay_trade_query_response")

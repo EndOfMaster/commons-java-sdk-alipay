@@ -20,6 +20,7 @@ public abstract class AlipayRequest<T extends AlipayResponse> {
     private final String returnUrl;
     private final String notifyUrl;
 
+
     protected AlipayRequest(String returnUrl, String notifyUrl) {
         this.returnUrl = returnUrl;
         this.notifyUrl = notifyUrl;

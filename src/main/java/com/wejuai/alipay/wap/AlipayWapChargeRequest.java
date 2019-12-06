@@ -14,18 +14,23 @@ public class AlipayWapChargeRequest extends AlipayRequest<AlipayWapChargeRespons
     private final String outTradeNo;
     private final String subject;
     private final String totalAmount;
+    private final String returnUrl;
+    private final String notifyUrl;
 
     public AlipayWapChargeRequest(String outTradeNo, String subject, String totalAmount, String returnUrl, String notifyUrl) {
-        super(returnUrl, notifyUrl);
         this.outTradeNo = outTradeNo;
         this.subject = subject;
         this.totalAmount = totalAmount;
+        this.returnUrl = returnUrl;
+        this.notifyUrl = notifyUrl;
     }
 
     @Override
     public Map<String, String> buildRequestParams() throws JsonProcessingException {
         Map<String, String> params = super.buildRequestParams();
         params.put("method", "alipay.trade.wap.pay");
+        params.put("return_url", returnUrl);
+        params.put("notify_url", notifyUrl);
         return params;
     }
 

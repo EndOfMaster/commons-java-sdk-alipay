@@ -15,18 +15,23 @@ public class AlipayDirectChargeRequest extends AlipayRequest<AlipayDirectChargeR
     private final String outTradeNo;
     private final String subject;
     private final String totalAmount;
+    private final String returnUrl;
+    private final String notifyUrl;
 
     public AlipayDirectChargeRequest(String outTradeNo, String subject, String totalAmount, String returnUrl, String notifyUrl) {
-        super(returnUrl, notifyUrl);
         this.outTradeNo = outTradeNo;
         this.subject = subject;
         this.totalAmount = totalAmount;
+        this.notifyUrl = notifyUrl;
+        this.returnUrl = returnUrl;
     }
 
     @Override
     public Map<String, String> buildRequestParams() throws JsonProcessingException {
         Map<String, String> params = super.buildRequestParams();
         params.put("method", "alipay.trade.page.pay");
+        params.put("return_url", returnUrl);
+        params.put("notify_url", notifyUrl);
         return params;
     }
 

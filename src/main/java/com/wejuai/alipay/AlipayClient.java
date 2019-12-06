@@ -31,11 +31,14 @@ import static com.wejuai.alipay.Constants.OPENAPI_GATEWAY_URL;
  */
 public class AlipayClient {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final static Logger logger = LoggerFactory.getLogger(AlipayClient.class);
 
     private final String appId;
     private final String rsaPrivateKey;
     private final HttpClient httpClient;
+
+    public static final String ALIPAY_CERT_SN = "ffc5e726cb3739f201cdc150da20a830";//支付宝公钥证书序列号
+    public static final String ALIPAY_ROOT_CERT_SN = "687b59193f3f462dd5336e5abf83c5d8_02941eef3187dddf3d3b83462e1dfcf6";//支付宝跟证书的序列号
 
     public AlipayClient(String appId, String rsaPrivateKey) {
         this.appId = appId;
@@ -67,21 +70,10 @@ public class AlipayClient {
         }
     }
 
-//    public AlipayDirectChargeResponse execute(AlipayDirectChargeRequest request) {
-//        try {
-//            Map<String, String> requestParams = request.buildRequestParams();
-//            sign(requestParams);
-//            String url = CredentialsUtils.buildUrl(MAPI_GATEWAY_URL, requestParams, CHARSET);
-//            String html = CredentialsUtils.buildForm(url, null);
-//            return new AlipayDirectChargeResponse(html);
-//        } catch (SignatureException | UnsupportedEncodingException | JsonProcessingException e) {
-//            throw new AlipayException(e);
-//        }
-//    }
-
     private void sign(Map<String, String> params) throws SignatureException {
         String preSignString = PresignUtils.createLinkString(params, true);
         String sign = RsaSignUtils.sha256Sign(preSignString, rsaPrivateKey, CHARSET);
         params.put("sign", sign);
     }
+
 }

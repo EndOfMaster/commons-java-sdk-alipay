@@ -12,16 +12,21 @@ import java.util.Map;
 public class AlipayChargeQueryRequest extends AlipayRequest<AlipayChargeQueryResponse> {
 
     private final String outTradeNo;
+    private final String returnUrl;
+    private final String notifyUrl;
 
     public AlipayChargeQueryRequest(String returnUrl, String notifyUrl, String outTradeNo) {
-        super(returnUrl, notifyUrl);
         this.outTradeNo = outTradeNo;
+        this.notifyUrl=notifyUrl;
+        this.returnUrl=returnUrl;
     }
 
     @Override
     public Map<String, String> buildRequestParams() throws JsonProcessingException {
         Map<String, String> params = super.buildRequestParams();
         params.put("method", "alipay.trade.query");
+        params.put("return_url", returnUrl);
+        params.put("notify_url", notifyUrl);
         return params;
     }
 

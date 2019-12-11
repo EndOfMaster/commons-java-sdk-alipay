@@ -17,8 +17,8 @@ public class AlipayChargeQueryRequest extends AlipayRequest<AlipayChargeQueryRes
 
     public AlipayChargeQueryRequest(String returnUrl, String notifyUrl, String outTradeNo) {
         this.outTradeNo = outTradeNo;
-        this.notifyUrl=notifyUrl;
-        this.returnUrl=returnUrl;
+        this.notifyUrl = notifyUrl;
+        this.returnUrl = returnUrl;
     }
 
     @Override

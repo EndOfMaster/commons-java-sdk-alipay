@@ -7,7 +7,6 @@ import com.wejuai.alipay.AlipayRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.wejuai.alipay.AlipayClient.ALIPAY_ROOT_CERT_SN;
 import static com.wejuai.alipay.Constants.OBJECT_MAPPER;
 
 /**
@@ -21,16 +20,14 @@ public class AlipayTransferRequest extends AlipayRequest<AlipayTransferResponse>
     private final String userAccounts;
     private final String userName;
     private final String productCode;
-    private final String appCertSn;
 
-    public AlipayTransferRequest(String chargeId, String amount, String title, String userAccounts, String userName, String productCode, String appCertSn) {
+    public AlipayTransferRequest(String chargeId, String amount, String title, String userAccounts, String userName, String productCode) {
         this.chargeId = chargeId;
         this.amount = amount;
         this.title = title;
         this.userAccounts = userAccounts;
         this.userName = userName;
         this.productCode = productCode;
-        this.appCertSn = appCertSn;
     }
 
     @Override
@@ -62,8 +59,6 @@ public class AlipayTransferRequest extends AlipayRequest<AlipayTransferResponse>
     public Map<String, String> buildRequestParams() throws JsonProcessingException {
         Map<String, String> params = super.buildRequestParams();
         params.put("method", "alipay.fund.trans.uni.transfer");
-        params.put("alipay_root_cert_sn", ALIPAY_ROOT_CERT_SN);
-        params.put("app_cert_sn", appCertSn);
         return params;
     }
 }

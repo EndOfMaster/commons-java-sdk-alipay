@@ -43,7 +43,7 @@ public class AlipayClientTest {
     private AlipayClient alipayClient;
 
     public AlipayClientTest() {
-        this.alipayClient = new AlipayClient("2018090861261835", "*****");
+        this.alipayClient = new AlipayClient("2018090861261835", "*****","*****");
     }
 
     @Test
@@ -85,7 +85,7 @@ public class AlipayClientTest {
     public void transfer() {
         String chargeId = RandomStringUtils.randomAlphanumeric(32);
         AlipayTransferRequest request = new AlipayTransferRequest(chargeId, "1.00", "测试转账", "****",
-                "*****", "TRANS_ACCOUNT_NO_PWD", "*********");
+                "*****", "TRANS_ACCOUNT_NO_PWD");
         AlipayTransferResponse response = alipayClient.execute(request);
         if (response.isSuccessful()) {
             System.err.println(response.getOrderId());
@@ -97,7 +97,7 @@ public class AlipayClientTest {
     @Test
     public void queryTransfer() {
         AlipayQueryTransferRequest request = new AlipayQueryTransferRequest("80uCuSOS9oKgZC3Uv1yXGWLHyLNo3J9U",
-                "TRANS_ACCOUNT_NO_PWD", "DIRECT_TRANSFER", "*******");
+                "TRANS_ACCOUNT_NO_PWD", "DIRECT_TRANSFER");
         AlipayQueryTransferResponse response = alipayClient.execute(request);
         if (response.isSuccessful()) {
             System.err.println(response.getAmount());

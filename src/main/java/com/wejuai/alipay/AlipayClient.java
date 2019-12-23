@@ -49,7 +49,7 @@ public class AlipayClient {
         this.httpClient = HttpClientBuilder.create().setDefaultRequestConfig(requestConfig).build();
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public <T extends AlipayResponse> T execute(AlipayRequest<T> request) {
         try {
             Map<String, String> params = request.buildRequestParams();
@@ -64,6 +64,7 @@ public class AlipayClient {
             if (request instanceof AlipayWapChargeRequest) {
                 return (T) new AlipayWapChargeResponse(url);
             }
+            logger.debug("请求url：" + url);
             HttpPost httpPost = new HttpPost(url);
             HttpResponse response = httpClient.execute(httpPost);
             String result = StreamUtils.copyToString(response.getEntity().getContent(), CHARSET_OBJ);

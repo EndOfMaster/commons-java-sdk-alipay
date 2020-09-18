@@ -15,6 +15,7 @@ import static com.wejuai.alipay.Constants.VERSION;
 /**
  * @author ZM.Wang
  */
+@SuppressWarnings({"rawtypes"})
 public abstract class AlipayRequest<T extends AlipayResponse> {
 
     public abstract Class<T> getResponseClass();

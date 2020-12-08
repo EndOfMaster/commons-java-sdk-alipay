@@ -1,42 +1,35 @@
 buildscript {
     repositories {
+        maven { url 'https://maven.aliyun.com/repository/central' }
         jcenter()
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
-    }
-    dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
     }
 }
 
-group 'com.endofmaster'
-description = 'Java SDK for alipay API'
+plugins {
+    id 'maven'
+    id 'java-library'
+    id "com.jfrog.bintray" version "1.8.5"
+}
 
-version '1.0.2'
+group = 'com.endofmaster'
+version = '1.0.3'
+sourceCompatibility = '11'
 
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'maven-publish'
-apply plugin: 'com.jfrog.bintray'
+repositories {
+    maven { url 'https://maven.aliyun.com/repository/central' }
+    mavenLocal()
+    maven { url 'https://dl.bintray.com/endofmaster/maven' }
+}
 
 [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 
-repositories {
-    mavenLocal()
-    jcenter()
-    maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
-    maven { url 'https://dl.bintray.com/endofmaster/maven' }
-    mavenCentral()
-}
-
 dependencies {
-    compile 'org.apache.httpcomponents:httpclient:4.5.3'
-    compile 'org.apache.httpcomponents:httpmime:4.5.3'
-    compile 'org.bouncycastle:bcprov-jdk15on:1.62'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+    implementation 'org.apache.httpcomponents:httpmime:4.5.13'
+    implementation 'com.endofmaster:commons-utils:1.0.6'
 
-    compile 'com.endofmaster:commons-utils:1.0.4'
-
-    testRuntime 'org.slf4j:slf4j-simple:1.7.22'
-    testCompile 'junit:junit:4.12'
+    testCompileOnly 'org.slf4j:slf4j-simple:1.7.30'
+    testCompileOnly 'org.junit.jupiter:junit-jupiter:5.7.0'
 }
 
 bintray {

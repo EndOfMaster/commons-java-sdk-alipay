@@ -9,6 +9,7 @@ import java.util.Map;
 /**
  * @author YQ.Huang
  */
+@SuppressWarnings({"rawtypes"})
 public class AlipayDirectChargeResponse extends AlipayResponse {
 
     private String html;

@@ -56,7 +56,7 @@ public class AlipayChargeCallback extends AlipayCallback {
         String param = "total_amount";
         double expected = amount / 100.0;
         String actual = findParam(params, param);
-        validateParam(param, expected, Double.valueOf(actual));
+        validateParam(param, expected, Double.parseDouble(actual));
     }
 
 }

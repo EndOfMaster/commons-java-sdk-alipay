@@ -15,9 +15,15 @@ version = '1.0.3'
 sourceCompatibility = '11'
 
 repositories {
-    maven { url 'https://maven.aliyun.com/repository/central' }
-    maven { url 'https://maven.pkg.github.com/EndOfMaster/maven-repo' }
     mavenLocal()
+    maven { url 'https://maven.aliyun.com/repository/central' }
+    maven {
+        url 'https://maven.pkg.github.com/wejuai/maven-repo'
+        credentials {
+            username = project.findProperty("githubUser") ?: System.getenv("githubUser")
+            password = project.findProperty("githubKey") ?: System.getenv("githubKey")
+        }
+    }
 }
 
 [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'

@@ -38,7 +38,6 @@ public class AlipayClient {
     private final HttpClient httpClient;
     private final String appCertSn;
 
-    public static final String ALIPAY_CERT_SN = "ffc5e726cb3739f201cdc150da20a830";//支付宝公钥证书序列号
     public static final String ALIPAY_ROOT_CERT_SN = "687b59193f3f462dd5336e5abf83c5d8_02941eef3187dddf3d3b83462e1dfcf6";//支付宝跟证书的序列号
 
     public AlipayClient(String appId, String rsaPrivateKey, String appCertSn) {
